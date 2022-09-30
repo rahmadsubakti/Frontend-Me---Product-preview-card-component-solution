@@ -1,0 +1,343 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap';
+
+@import 'variables';
+//$dark-cyan: hsl(158, 36%, 37%);
+//$cream: hsl(30, 38%, 92%);
+//$very-dark-blue: hsl(212, 21%, 14%);
+//$dark-grayish-blue: hsl(228, 12%, 48%);
+//$white: hsl(0, 0%, 100%);
+
+@mixin body-res($device) {
+    @if #{$device} == "desktop" {
+        body {
+            width: 1440px;
+            height: 800px;
+            padding: 175px 420px;
+        }
+    } @else if #{$device} == "mobile" {
+        body {
+            width: 375px;
+            height: 667px;
+            padding: 28px 15px;
+        }
+    }
+}
+
+@mixin container-res($device) {
+    @if #{$device} == "desktop" {
+        .container {
+            flex-direction: row;
+
+            @include images-res($device);
+            @include content-container-res($device);
+        }
+    } @else if #{$device} == "mobile" {
+        .container {
+            flex-direction: column;
+
+            @include images-res($device);
+            @include content-container-res($device);
+        }
+    }
+}
+
+@mixin images-res($device) {
+    @if #{$device} == "desktop" {
+        .images {
+            width: 50%;
+            background: url('images/image-product-desktop.jpg');
+            background-size: 100%;
+        }
+    } @else if #{$device} == "mobile" {
+        .images {
+            width: 100%;
+            height: 240px;
+            background: url('images/image-product-mobile.jpg');
+            background-size: 100%;
+        }
+    }
+}
+
+@mixin content-container-res($device) {
+    @if #{$device} == "desktop" {
+        .content-container {
+            width: 50%;
+            height: 100%;
+
+            @include content-res($device);
+        }
+    } @else if #{$device} == "mobile" {
+        .content-container {
+            width: 100%;
+            height: 372px;
+
+            @include content-res($device);
+        }
+    }
+}
+
+@mixin content-res($device) {
+    @if #{$device} == "desktop" {
+        .content {
+            padding: 32px 32px;
+            @include h1-res($device);
+            @include h4-res($device);
+            @include prices-res($device);
+        }
+    } @else if #{$device} == "mobile" {
+        .content {
+            padding: 27px 25px;
+
+            @include h1-res($device);
+            @include h4-res($device);
+            @include prices-res($device);
+        }
+    }
+}
+
+@mixin h4-res($device) {
+    @if #{$device} == "desktop" {
+        h4 {
+            margin-bottom : 18px;
+        }
+    } @else if #{$device} == "mobile" {
+        h4 {
+            margin-bottom : 12px;
+        }
+    }
+}
+
+@mixin h1-res($device) {
+    @if #{$device} == "desktop" {
+        h1 {
+            margin-bottom : 30px;
+        }
+    } @else if #{$device} == "mobile" {
+        h1 {margin-bottom : 12px;}
+    }
+}
+
+@mixin prices-res($device) {
+    @if #{$device} == "desktop" {
+        .prices{margin-bottom: 24px;}
+    } @else if #{$device} == "mobile" {
+        .priceS{margin-bottom: 15px;}
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    //width: 1440px;
+    //height: 800px;
+    //padding: 175px 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $cream;
+}
+
+.container {
+    //width: 100%;
+    //height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+
+    .content-container {
+        //width: 50%;
+        background: $white;
+
+        .content {
+            //padding: 32px 32px;
+
+            h4 {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                font-size: 12px;
+                letter-spacing: 0.4em;
+                //margin-bottom: 18px;
+            }
+
+            h1 {
+                font-family: 'Fraunces', serif;
+                font-weight: 700;
+                color: $very-dark-blue;
+                line-height: 32px;
+                //margin-bottom: 30px;
+            }
+
+            p {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 22px;
+                margin-bottom: 28px;
+            }
+
+            .prices {
+                display: flex;
+                align-items: center;
+                //margin-bottom : 24px;
+
+                .prices-after {
+                    font-family: 'Fraunces', serif;
+                    font-weight: 700;
+                    font-size: 32px;
+                    color: $dark-cyan;
+                }
+
+                .prices-before {
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 500;
+                    font-size: 13px;
+                    color: $dark-grayish-blue;
+                    text-decoration: line-through;
+                    margin-left: 18px;
+                }
+            }
+
+            button {
+                width: 100%;
+                background-color: $dark-cyan;
+                color: $white;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                font-size: 13px;
+                padding: 15px 0;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    margin-right: 15px;
+                }
+
+                &:hover {
+                    background-color: $very-dark-blue;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    @include body-res("desktop");
+    @include container-res("desktop");
+}
+
+@media screen and (max-width: 375px) {
+    @include body-res("mobile");
+    @include container-res("mobile");
+}
+
+
+/*
+.container {
+        @include container-res("desktop");
+
+        .images {
+            @include images-res("desktop");
+        }
+
+        .content-container {
+            @include content-container-res("desktop");
+
+            .content {
+                @include content-res("desktop");
+
+                h4 {
+                    @include h4-res("desktop");
+                }
+
+                h1 {
+                    @include h1-res("desktop");
+                }
+
+                .prices {
+                    @include prices-res("desktop");
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+    body {
+        @include body-res("mobile");
+    }
+    .container {
+        @include container-res("mobile");
+
+        .images {
+            @include images-res("mobile");
+        }
+
+        .content-container {
+            @include content-container-res("mobile");
+
+            .content {
+                @include content-res("mobile");
+
+                h4 {
+                    @include h4-res("mobile");
+                }
+
+                h1 {
+                    @include h1-res("mobile");
+                }
+
+                .prices {
+                    @include prices-res("mobile");
+                }
+            }
+        }
+    }
+}*/
+
+/*@media screen and (max-width: 375px) {
+    body {
+        width: 375px; // $body-width
+        height: 667px; // $body-height
+        padding: 28px 15px; // $body-padding
+    }
+
+    .container {
+        flex-direction: column; // $flex-container
+
+        .images {
+            width: 100%; // width
+            height: 240px; // height
+            background-image: url('images/image-product-mobile.jpg'); //background
+        }
+
+        .content-container {
+            width: 100%; //width
+            height: 372px; //height
+
+            .content {
+                padding: 27px 25px; //padding
+
+                h4 {
+                    margin-bottom: 12px; //margin-bottom
+                }
+
+                h1 {
+                    margin-bottom: 15px; //margin-bottom
+                }
+
+                .prices {
+                    margin-bottom: 15px; //$margin-bottom
+                }
+            }
+        }
+    }
+}*/
